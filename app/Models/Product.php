@@ -23,7 +23,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function scopeLatest($query)
+    public function scopeLatestProducts($query)
     {
         return $query->orderBy('created_at', 'desc')->take(8);
     }

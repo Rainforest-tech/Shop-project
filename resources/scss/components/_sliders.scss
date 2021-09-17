@@ -1,0 +1,116 @@
+.popular_goods {
+
+  .new_goods__header {
+    background-color: $white;
+    padding: 25px 31px;
+    @include font(false, 24px, $blue-light);
+    .new_goods__header__nav {
+      float: right;
+    }
+
+  }
+  .new_goods__body {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $white;
+  }
+  .new_goods__card {
+    display: inline-block;
+    padding: 1px;
+    position: relative;
+    width: 288px;
+    width: 100%;
+    background-color: $white;
+    img {
+      margin: auto;
+      height: 232px;
+    }
+    .new_goods__card_text {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background-color: $white;
+      padding: 28px 31px;
+      height: 100px;
+      & .name {
+        color: #555555;
+        font-size: 14px;
+      }
+      & .price {
+        position: relative;
+        white-space: nowrap;
+        @include font(Supermolot-Light, 18px, $red);
+        font-style: italic;
+        .oldprice {
+          display: block;
+          position: absolute;
+          top: 18px;
+          right: 0;
+          @include font(Supermolot-Light-Italic, 16px, #999999);
+          text-decoration: line-through;
+        }
+      }
+
+    }
+  }
+}
+@include block('product-slider') {
+  margin-bottom: 18px;
+
+  @include block('header'){
+    background-color: $white;
+    padding: 25px 31px;
+    @include font(false, 24px, $blue-light);
+    @include element('nav'){
+      float: right;
+      cursor: pointer;
+    i{
+      color: #000000;
+
+    }
+    }
+  }
+  @include block('body'){
+    background-color: #dee1e3;
+    .slick-slide{
+      padding-right: 2px;
+    }
+    @include block('card'){
+      display: inline-block;
+      padding: 1px;
+      position: relative;
+      width: 288px;
+      background-color: $white;
+      @include element('image'){
+        margin: auto;
+        height: 232px;
+      }
+      @include element('text'){
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background-color: $white;
+        padding: 28px 31px;
+        height: 100px;
+        @include modifier('name'){
+          color: #555555;
+          font-size: 14px;
+        }
+        @include modifier('price') {
+          position: relative;
+          white-space: nowrap;
+          @include font(Supermolot-Light, 18px, $red);
+          font-style: italic;
+        }
+        @include modifier('oldprice'){
+          display: block;
+          position: absolute;
+          top: 18px;
+          right: 0;
+          @include font(Supermolot-Light-Italic, 16px, #999999);
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+}

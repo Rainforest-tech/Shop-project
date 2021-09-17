@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -23,6 +28,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (Schema::hasTable('categories')) {
+            $categories = Cache::get(
+                'categories',
+                function () {
+                    return Category::all();
+                }
+            );
+            View::share(compact('categories'));
+        }
+        if (Schema::hasTable('order_delivery_methods')) {
+            $delivery_methods = Cache::get(
+                'delivery_method',
+                function () {
+                    return DB::table('order_delivery_methods')->get();
+                }
+            );
+            View::share(compact('delivery_methods'));
+        }
     }
 }
